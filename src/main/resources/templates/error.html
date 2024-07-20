@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Page</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .error-container {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .error-title {
+      color: #dc3545;
+    }
+    .error-message {
+      margin: 20px 0;
+    }
+    .nav-link {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="error-container">
+  <h1 class="error-title">Bir xəta baş verdi</h1>
+  <p class="error-message" th:text="${errorMessage}"></p>
+  <a class="btn btn-primary nav-link" th:href="@{/}">Ana səhifə</a>
+  <a class="btn btn-primary nav-link" th:href="@{/shop}">Online satış</a>
+  <a class="btn btn-primary nav-link" th:href="@{/news}">Xəbərlər</a>
+  <a class="btn btn-primary nav-link" th:href="@{/login}">Qeydiyyat</a>
+</div>
+</body>
+</html>

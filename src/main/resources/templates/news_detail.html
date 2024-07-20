@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="body">
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Read the Details</p>
+                        <h1>Single Article</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- single article section -->
+    <div class="mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="single-article-section">
+                        <div class="single-article-text">
+                                <img th:src="'/uploads/' + ${news.photoUrl}" alt="" class="img-fluid">
+                            </div>
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date" th:date="@{news.date}"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <h2 th:text="${news.title}">Pomegranate can prevent heart disease</h2>
+                            <p th:text="${news.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint soluta, similique quidem fuga vel voluptates amet doloremque corrupti. Perferendis totam voluptates eius error fuga cupiditate dolorum? Adipisci mollitia quod labore aut natus nobis. Rerum perferendis, nobis hic adipisci vel inventore facilis rem illo, tenetur ipsa voluptate dolorem, cupiditate temporibus laudantium quidem recusandae expedita dicta cum eum. Quae laborum repellat a ut, voluptatum ipsa eum. Culpa fugiat minus laborum quia nam!</p>
+                           </div>
+                    <hr class="invis1">
+
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">Comments</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="comments-list">
+                                    <div th:each="comment : ${comments}" class="media">
+                                        <a class="media-left" href="#">
+                                            <img src="upload/author.jpg" alt="" class="rounded-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading user_name" th:text="${comment.user.firstName}">Amanda Martines</h4>
+                                            <p th:text="${comment.content }">Exercitation photo booth stumptown
+                                                tote bag Banksy, elit small batch freegan sed. Craft beer elit
+                                                seitan exercitation, photo booth et 8-bit kale chips proident
+                                                chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod
+                                                Pinterest in do umami readymade swag. Selfies iPhone
+                                                Kickstarter, drinking vinegar jean.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end custom-box -->
+
+                    <hr class="invis1">
+
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">Leave a Reply</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form method="post" class="form-wrapper">
+                                            <textarea name="content" class="form-control"
+                                                      placeholder="Your comment"></textarea>
+                                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end single article section -->
+
+    <!-- logo carousel -->
+    <div class="logo-carousel-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel-inner">
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/1.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/2.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/3.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/4.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end logo carousel -->
+</section>
+
+</body>
+</html>

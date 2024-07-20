@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="body">
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Organic Information</p>
+                        <h1>News Article</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- latest news -->
+    <div class="news-bg-1-section mt-100 mb-100">
+        <div class="container">
+            <div class="product-section mt-50 mb-50">
+                <div class="container">
+                    <div class="row" >
+                        <div th:each="news : ${news}" class="col-lg-7  col-md-7 text-center">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <a th:href="@{/news/news_detail/{id}(id=${news.id})}">
+                                        <img th:src="'/uploads/'+${news.photoUrl}" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                                <h3>
+                                    <a th:text="${news.title}" th:href="@{/news/news_detail/{id}(id=${news.id})}" title=""></a>
+                                </h3>
+                                <p class="product-description"><span></span> <span th:text="${news.description}"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-start">
+                            <li th:each="page : ${#numbers.sequence(1, pagination)}" class="page-item"><a th:text="${page}" class="page-link" th:href="'?currentPage=' + ${page}"></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div>
+    </div>
+    <!-- end latest news -->
+
+    <!-- logo carousel -->
+    <div class="logo-carousel-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel-inner">
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/1.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/2.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/3.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/4.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="/front/assets/img/company-logos/5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end logo carousel -->
+
+</section>
+
+</body>
+</html>
