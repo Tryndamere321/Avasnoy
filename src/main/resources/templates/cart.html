@@ -85,7 +85,7 @@
                         <form method="post" action="/order" class="cart-buttons">
                             <input type="hidden" name="userId" th:value="${userId}" />
                             <textarea type="text" class="form-control" name="address"> </textarea>
-                            <input type="hidden" name="cartData" th:value="${cart}" />
+                            <input th:each="cart : ${carts}" type="hidden" name="cartIds" th:value="${cart.id}" />
                             <button type="submit" class="boxed-btn black">Sifariş</button>
                         </form>
                     </div>

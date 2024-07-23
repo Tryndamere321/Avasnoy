@@ -37,13 +37,13 @@ public class CartController {
         return "/cart";
     }
 
-    @PostMapping("/cart")
-    public String getTotalPrice(@RequestBody CartRequestDto cartRequestDto, Model model) {
-        Double totalPrice = cartService.calculateTotalPrice(cartRequestDto);
-        model.addAttribute("totalPrice", totalPrice);
-        return "redirect:/order";
-
-    }
+//    @PostMapping("/cart")
+//    public String getTotalPrice(@RequestBody CartRequestDto cartRequestDto, Model model) {
+//        Double totalPrice = cartService.calculateTotalPrice(cartRequestDto);
+//        model.addAttribute("totalPrice", totalPrice);
+//        return "redirect:/order";
+//
+//    }
 
 
 

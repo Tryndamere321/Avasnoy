@@ -5,5 +5,5 @@ import com.example.dtos.OrderDtos.OrderAddDto;
 import com.example.models.Order;
 
 public interface OrderService {
-    Order createOrder(OrderAddDto orderAddDto, CartRequestDto cartRequestDto);
+    public Order createOrder(OrderAddDto orderAddDto,String email);
 }

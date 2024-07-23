@@ -22,5 +22,8 @@ public class Cart {
 
     @ManyToOne
     private Product product;
+    @ManyToMany(mappedBy = "cart")
+    private List<Order> orders = new ArrayList<>();
+
 
 }
