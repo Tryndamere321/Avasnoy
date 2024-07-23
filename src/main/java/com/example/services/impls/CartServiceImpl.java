@@ -2,11 +2,15 @@ package com.example.services.impls;
 
 import com.example.dtos.CartDtos.CartCreateDto;
 import com.example.dtos.CartDtos.CartRequestDto;
+import com.example.dtos.CategoryDtos.CategoryUpdateDto;
 import com.example.dtos.ProductDtos.ProductDashboardDto;
+import com.example.exception.NotFoundExeption;
 import com.example.models.Cart;
+import com.example.models.Category;
 import com.example.models.Product;
 import com.example.models.UserEntity;
 import com.example.repostories.CartRepository;
+import com.example.repostories.ProductRepository;
 import com.example.repostories.UserRepository;
 import com.example.services.CartService;
 import com.example.services.UserService;
@@ -27,6 +31,8 @@ public class CartServiceImpl implements CartService {
     private ModelMapper modelMapper;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -38,9 +44,12 @@ public class CartServiceImpl implements CartService {
         Optional<Cart> existingCart = cartRepository.findByUserIdAndProductId(userEntity.getId(), cartCreateDto.getProductId());
         if (existingCart.isEmpty()) {
             Cart newCart = new Cart();
-            newCart.setProductId(cartCreateDto.getProductId());
+            Product product = productRepository.findById(cartCreateDto.getProductId()).orElse(null);
+            newCart.setProduct(product);
             newCart.setQuantity(cartCreateDto.getQuantity());
             newCart.setUserId(userEntity.getId());
+            assert product != null;
+            newCart.setTotalPrice(cartCreateDto.getTotalPrice());
             cartRepository.save(newCart);
         } else {
             Cart cart = existingCart.get();
@@ -56,6 +65,24 @@ public class CartServiceImpl implements CartService {
                         .map(x, CartRequestDto.class))
                 .collect(Collectors.toList());
         return result;
+    }
+    @Override
+    public Double calculateTotalPrice(CartRequestDto cartRequestDto) {
+        Double price = cartRequestDto.getProduct().getPrice();
+        Double quantity = cartRequestDto.getQuantity();
+        return price * quantity;
+    }
+    @Override
+    public void deleteProduct(Long id) {
+        Cart cart = cartRepository.findById(id).orElseThrow(NotFoundExeption::new);
+        cartRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateCart(CartRequestDto cartUpdate, Long id) {
+        Cart findCart=cartRepository.findById(id).orElseThrow(NotFoundExeption::new);
+        findCart.setQuantity(cartUpdate.getQuantity());
+        cartRepository.save(findCart);
     }
 
 }

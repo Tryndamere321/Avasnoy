@@ -4,6 +4,7 @@ import com.example.dtos.CategoryDtos.CategoryAddDto;
 import com.example.dtos.CategoryDtos.CategoryHomeDto;
 import com.example.dtos.CategoryDtos.CategoryUpdateDto;
 import com.example.services.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,6 @@ public class CategoryController {
 
     @GetMapping("/dashboard/category")
     public String dashboardCategory(Model model) {
-
         List<CategoryHomeDto> data = categoryService.getHomeCategories();
         model.addAttribute("categories", data);
         return "/dashboard/category/index";
@@ -33,7 +33,7 @@ public class CategoryController {
     }
 
     @PostMapping("/dashboard/category/create")
-    public String addCategory(CategoryAddDto categoryAddDto) {
+    public String addCategory(@Valid CategoryAddDto categoryAddDto) {
         categoryService.createCategory(categoryAddDto);
         return "redirect:/dashboard/category";
     }

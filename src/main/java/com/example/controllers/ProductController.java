@@ -12,6 +12,7 @@ import com.example.repostories.ProductRepository;
 import com.example.services.CartService;
 import com.example.services.CategoryService;
 import com.example.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +75,7 @@ public class ProductController {
     }
 
     @PostMapping("/dashboard/article/create")
-    public String create(ProductAddDto articleCreateDto, @RequestParam("image") MultipartFile file) throws IOException {
+    public String create(@Valid ProductAddDto articleCreateDto, @RequestParam("image") MultipartFile file) throws IOException {
         UUID rand = UUID.randomUUID();
         StringBuilder fileNames = new StringBuilder();
         Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, rand + file.getOriginalFilename());

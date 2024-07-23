@@ -1,17 +1,14 @@
 package com.example.dtos.OrderDtos;
 
+import com.example.dtos.CartDtos.CartDto;
+import com.example.dtos.CartDtos.CartRequestDto;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class OrderAddDto {
-    private Date date;
     private String address;
-    private String city;
-    private String productName;
-    private Double totalPrice;
-    private Double productPrice;
-    private Double deliveryPrice;
-    private Long productId;
+    private Long userId;
+    private CartRequestDto cart;
 }

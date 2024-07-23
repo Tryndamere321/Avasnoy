@@ -16,6 +16,7 @@ import com.example.payloads.NewsPagination;
 import com.example.services.CommentService;
 import com.example.services.NewsService;
 import com.example.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -62,7 +63,7 @@ public class NewsController {
         return "/news_detail";
     }
     @PostMapping("/news/news_detail/{id}")
-    public String addcomment(CommentCreateDto commentCreateDto, Principal principal, @PathVariable Long id) {
+    public String addcomment( CommentCreateDto commentCreateDto, Principal principal, @PathVariable Long id) {
         String username = principal.getName();
         commentCreateDto.setNewsId(id);
         commentService.addComment(commentCreateDto, username);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
         xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
@@ -70,7 +71,7 @@
                                 <li><a th:href="@{/shop}">Online Satış</a></li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" th:href="@{/cart}"><i
+                                        <a sec:authorize="isAuthenticated()" class="shopping-cart" th:href="@{/cart}"><i
                                                 class="fas fa-shopping-cart" style="font-size: 20px;"></i></a>
                                         <a class="shopping-cart" th:href="@{/login}"><i
                                                 class="fas fa-sign-in-alt" style="font-size: 20px;"></i></a>

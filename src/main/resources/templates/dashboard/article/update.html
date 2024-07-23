@@ -12,18 +12,18 @@
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <input type="text" name="product" th:value="${article.product}" class="form-control col-4"
-                   placeholder="article title"/>
+                   placeholder="article title" required/>
         </div>
 
         <div class="form-group">
             <input type="number" step="0.01" name="weight" th:value="${article.weight}" class="form-control col-4"
-                   placeholder="article title"/>
+                   placeholder="article title" required/>
         </div><div class="form-group">
         <input type="number" step="0.01" name="price" th:value="${article.price}" class="form-control col-4"
-               placeholder="article title"/>
+               placeholder="article title" required/>
     </div>
         <div class="form-group">
-            <input type="file" name="image" class="form-control col-4"/>
+            <input type="file" name="image" class="form-control col-4" required/>
         </div>
 
         <div class="form-group">

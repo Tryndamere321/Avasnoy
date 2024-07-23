@@ -43,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentDto> getCommentsByNewsId(long newsId) {
+    public List<CommentDto> getCommentsByNewsId(Long newsId) {
         List<Comment> result = commentRepository.findByNewsId(newsId);
         List<CommentDto> comments = result.stream().map(c->modelMapper.map(c,CommentDto.class)).collect(Collectors.toList());
         return comments;

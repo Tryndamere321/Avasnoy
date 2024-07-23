@@ -3,6 +3,7 @@ package com.example.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,4 @@ public class Product {
 
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "product")
-    private List<Order> orders = new ArrayList<>();
-    @ManyToOne
-    private Cart cart;
 }

@@ -15,8 +15,7 @@ import java.util.List;
 public class CartRequestDto {
     private Long id;
     private Double quantity;
-    private Long productId;
-    private List<Product> products;
+    private ProductRequestDto product;
     private Long userId;
     private Double totalPrice;
 }

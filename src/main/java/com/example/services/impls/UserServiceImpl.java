@@ -40,4 +40,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(Math.toIntExact(id))
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+    @Override
+    public boolean confirmEmail(String email, String token) {
+
+//        UserEntity findUser = userRepository.findByEmail(email);
+//        if (findUser.getConfirmationToken().equals(token) && findUser != null)
+//        {
+//            findUser.setEmailConfirmed(true);
+//            userRepository.saveAndFlush(findUser);
+//            return true;
+//        }
+        return false;
+    }
+
 }
