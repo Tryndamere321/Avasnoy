@@ -16,6 +16,8 @@ public class Order {
     private Long id;
     private String address;
     private Double totalPrice;
+    private Boolean isCanceled=false;
+    private Boolean isCompleted=false;
     @ManyToMany
     @JoinTable(
             name="orders_carts",

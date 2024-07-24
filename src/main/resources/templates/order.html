@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
@@ -18,42 +14,32 @@
         .total-price {
             margin-bottom: 1.5rem; /* Formdan önce daha fazla boşluk */
         }
+        .message {
+            margin-top: 2rem; /* Mesajın üstünden aşağıya boşluk ekleyin */
+            color: green; /* Mesajın rengini yeşil yapın */
+        }
     </style>
 </head>
 <body>
-<section layout:fragment="body">
-    <div>
-        <!-- Logo buraya gelecek -->
-    </div>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Checkout</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3 total-price">
-                            <h5>Total Price: <span th:each="cart : ${carts}" th:text="${total}" id="total-price">$0.00</span></h5>
-                        </div>
-                        <form action="/complete-order" method="post">
-                            <div class="form-group">
-                                <label for="name">Ad:</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Ünvan:</label>
-                                <input type="text" id="address" name="address" class="form-control" required>
-                            </div>
+<header>
+    <div class="site-logo" style="width: 50px" >
+        <a th:href="@{/}">
+            <img src="/front/assets/img/logo.png" alt="">
+        </a>
 
-                            <button type="submit" class="btn btn-primary btn-block">Sifarişi Tamamla</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    </div>
+    <div >
+        <a href="/cart">Geri </a>
+    </div>
+</header>
+<div >
+    <!-- Display a success message if orderSuccess is true -->
+    <div class="container">
+        <div class="message alert alert-success">
+            Sifariş uğurla tamamlandı
         </div>
     </div>
-</section>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

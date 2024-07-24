@@ -19,6 +19,7 @@ public class Cart {
     private Double quantity;
     private Long userId;
     private Double totalPrice;
+    private Boolean isOrder=false;
 
     @ManyToOne
     private Product product;

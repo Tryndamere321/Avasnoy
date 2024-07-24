@@ -41,7 +41,7 @@ public class CartServiceImpl implements CartService {
     public void addCart(CartCreateDto cartCreateDto, String email) {
         UserEntity userEntity = userService.findByEmail(email);
         // Assuming Cart is identified by user ID and product ID
-        Optional<Cart> existingCart = cartRepository.findByUserIdAndProductId(userEntity.getId(), cartCreateDto.getProductId());
+        List<Cart> existingCart = cartRepository.findByUserIdAndProductId(userEntity.getId(), cartCreateDto.getProductId()).stream().filter(cart -> !cart.getIsOrder()).collect(Collectors.toList());
         if (existingCart.isEmpty()) {
             Cart newCart = new Cart();
             Product product = productRepository.findById(cartCreateDto.getProductId()).orElse(null);
@@ -52,15 +52,15 @@ public class CartServiceImpl implements CartService {
             newCart.setTotalPrice(cartCreateDto.getTotalPrice());
             cartRepository.save(newCart);
         } else {
-            Cart cart = existingCart.get();
+            for (Cart cart : existingCart) {
             cart.setQuantity(cart.getQuantity() + cartCreateDto.getQuantity());
-            cartRepository.save(cart);
+            cartRepository.save(cart);}
         }
     }
 
     @Override
     public List<CartRequestDto> getProducts() {
-        List<Cart> carts = cartRepository.findAll();
+        List<Cart> carts = cartRepository.findAll().stream().filter(cart ->!cart.getIsOrder()).collect(Collectors.toList());
         List<CartRequestDto> result = carts.stream().map(x -> modelMapper
                         .map(x, CartRequestDto.class))
                 .collect(Collectors.toList());

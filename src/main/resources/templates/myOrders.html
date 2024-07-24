@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="body">
+  <thead class="cart-table-head">
+  <tr class="table-head-row">
+    <th class="product-remove"></th>
+    <th class="product-image">Product Image</th>
+    <th class="product-name">Name</th>
+    <th class="product-price">Price</th>
+    <th class="product-quantity">Quantity</th>
+    <th class="product-total">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="cart : ${carts}"  class="table-body-row">
+    <td class="product-remove">
+      <form th:action="@{/cart/{id}(id=${cart.id})}" method="post">
+        <input type="hidden" name="action" value="remove">
+        <button type="submit"><i class="far fa-window-close"></i></button>
+      </form>
+    </td>
+    <td class="product-image"><img th:src="'/uploads/'+${cart.product.photoUrl}" alt=""></td>
+    <td class="product-product" th:text="${cart.product.product}">Strawberry</td>
+    <td class="product-price" th:text="${cart.product.price}">$85</td>
+    <td class="product-quantity">
+      <form th:action="@{/cart/{id}(id=${cart.id})}" method="post">
+        <input type="number" name="quantity" th:value="${cart.quantity}" step="0.01">
+        <input type="hidden" name="action" value="update">
+        <button type="submit">Update</button>
+      </form>
+    </td>
+    <td class="product-total" th:text="${cart.quantity}*${cart.product.price}+' azn'">1</td>
+  </tr>
+  </tbody>
+</section>
+
+</body>
+</html>

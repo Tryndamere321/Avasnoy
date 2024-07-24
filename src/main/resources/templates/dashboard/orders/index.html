@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/dashboard/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<div layout:fragment="body">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Adress</th>
+            <th scope="col">User id</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order: ${orders}">
+            <th th:text="${order.id}"  scope="row">1</th>
+            <td th:text="${order.address}">Mark</td>
+            <td th:text="${order.user.getId()}">Mark</td>
+
+            <td>
+                <a th:href="'/order/complete/'+${order.id}" class="btn btn-success">complete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
